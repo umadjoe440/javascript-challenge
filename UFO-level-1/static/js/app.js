@@ -22,14 +22,17 @@ var filter_button = d3.select("#filter-btn");
 filter_button.on("click", function() {
 
   // Select the input element and get the raw HTML node
-  var inputElement = d3.select("#datetime");
+  var inputDate = d3.select("#datetime");
 
   // Get the value property of the input element
-  var inputValue = inputElement.property("value");
+  var inputDateValue = inputDate.property("value");
 
-  console.log(inputValue);
-  
-  var filteredData = data.filter(sighting => sighting.datetime === inputValue);
+  var filteredData = data;
+
+  //Filter the Table Data Based on Populated Form Data
+  if(inputDateValue){
+    filteredData = filteredData.filter(sighting => sighting.datetime === inputDateValue);    
+  }
 
   console.log(filteredData);
   // select table body and remove all rows
